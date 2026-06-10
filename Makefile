@@ -2,12 +2,20 @@ NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
+UNAME_S := $(shell uname -s)
+
 MLX_DIR = ./mlx
 MLX = $(MLX_DIR)/libmlx.a
 OBJ_DIR = ./obj
 
-SRCS = main.c \
-		libft/gnl/get_next_line_bonus.c libft/gnl/get_next_line_utils_bonus.c \
+ifeq ($(UNAME_S),Darwin)
+MLX_LDFLAGS = -framework OpenGL -framework AppKit
+else
+MLX_LDFLAGS = -L./mlx -lmlx -lX11 -lXext -lm -lbsd
+endif
+
+SRCS = main.c player_controls/movements.c player_controls/angles.c \
+		libft/gnl/get_next_line.c libft/gnl/get_next_line_utils.c \
 		libft/ft_atoi.c libft/ft_bzero.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_tolower.c \
 		libft/ft_isascii.c libft/ft_isdigit.c libft/ft_isprint.c libft/ft_memchr.c libft/ft_memcpy.c \
 		libft/ft_memcmp.c libft/ft_memset.c libft/ft_strlcat.c libft/ft_toupper.c \
@@ -25,9 +33,9 @@ linux: $(MLX) $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) $(MLX) -L./mlx -lmlx -lX11 -lXext -lm -lbsd -o $(NAME)
 
 $(NAME): $(MLX) $(OBJ_DIR) $(OBJS)
-	$(CC) $(OBJS) $(MLX) -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) $(MLX) $(MLX_LDFLAGS) -o $(NAME)
 
- $(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -I$(MLX_DIR) -c $< -o $@
 
 $(MLX):
