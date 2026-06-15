@@ -16,6 +16,7 @@ endif
 
 SRCS = sources/main.c sources/game_init.c sources/game_cleanup.c sources/game_input.c \
 		sources/game_map.c sources/game_render.c sources/game_utils1.c \
+		sources/graphic/2d_utils.c \
 		sources/player_controls/movements.c sources/player_controls/angles.c \
 		libft/gnl/get_next_line.c libft/gnl/get_next_line_utils.c \
 		libft/ft_atoi.c libft/ft_bzero.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_tolower.c \

@@ -6,13 +6,12 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:00:00 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 11:17:33 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/15 18:04:35 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_keys	*get_global_keys(void);
 
 /**
  * handle_player_movement - Update player position based on key input
@@ -20,11 +19,11 @@ t_keys	*get_global_keys(void);
  *
  * Applies movement to player based on current key state.
  */
-static void	handle_player_movement(t_game *game)
+void	handle_player_movement(t_game *game)
 {
 	t_keys	*keys;
 
-	keys = get_global_keys();
+	keys = &game->keys;
 	if (keys->forward)
 		game->player.move_x(&game->player, &game->map,
 			game->player.move_speed);
@@ -55,7 +54,9 @@ static void	handle_player_movement(t_game *game)
 int	render_all(t_game *game)
 {
 	handle_player_movement(game);
-	mlx_clear_window(game->mlx, game->win);
+	put_circle_pixel(game, (int)(game->player.xpos * 50),
+		(int)(game->player.ypos * 50), 5, 5, 0xFF0000);
+	// mlx_clear_window(game->mlx, game->win);
 	mlx_string_put(game->mlx, game->win, 10, 10, 0xFFFFFF,
 		"Cub3D - Raycasting Engine (WIP)");
 	return (0);

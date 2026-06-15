@@ -6,7 +6,7 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:08:58 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 16:14:52 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/15 18:03:43 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_ray
 	float	ray_x;
 	float	ray_y;
 	float	distance;
-}				t_ray;
+}			t_ray;
 
 typedef struct s_assets
 {
@@ -49,7 +49,7 @@ typedef struct s_assets
 	void	*south_wall;
 	void	*west_wall;
 	void	*east_wall;
-}				t_assets;
+}			t_assets;
 
 typedef struct s_game
 {
@@ -59,6 +59,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_assets	assets;
+	t_keys		keys;
 
 	int			(*game_init)(int argc, char **argv, struct s_game *game);
 	int			(*render_all)(struct s_game *game);
@@ -71,6 +72,7 @@ int			render_all(t_game *game);
 int			key_hook(int key_code, t_game *game);
 int			close_game(t_game *game);
 
+void		put_circle_pixel(t_game *game, int cx, int cy, int x, int y, int color);
 int			loop(void);
 int			main(int argc, char **argv);
 
