@@ -6,11 +6,11 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:57:02 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 11:26:37 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/15 15:52:36 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 /* Normalize angle to [0, 2*PI) */
 static float	normalize_angle(float angle)

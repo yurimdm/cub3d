@@ -6,11 +6,11 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:57:04 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 11:57:27 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/15 15:52:35 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 t_player	init_player(int x, int y, float angle)
 {

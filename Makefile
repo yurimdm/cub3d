@@ -14,8 +14,9 @@ else
 MLX_LDFLAGS = -L./mlx -lmlx -lX11 -lXext -lm -lbsd
 endif
 
-SRCS = main.c game_init.c game_cleanup.c game_input.c game_map.c game_render.c game_utils1.c \
-	player_controls/movements.c player_controls/angles.c \
+SRCS = sources/main.c sources/game_init.c sources/game_cleanup.c sources/game_input.c \
+		sources/game_map.c sources/game_render.c sources/game_utils1.c \
+		sources/player_controls/movements.c sources/player_controls/angles.c \
 		libft/gnl/get_next_line.c libft/gnl/get_next_line_utils.c \
 		libft/ft_atoi.c libft/ft_bzero.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_tolower.c \
 		libft/ft_isascii.c libft/ft_isdigit.c libft/ft_isprint.c libft/ft_memchr.c libft/ft_memcpy.c \
@@ -30,15 +31,12 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-linux: $(MLX) $(OBJ_DIR) $(OBJS)
-	$(CC) $(OBJS) $(MLX) -L./mlx -lmlx -lX11 -lXext -lm -lbsd -o $(NAME)
-
 $(NAME): $(MLX) $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) $(MLX) $(MLX_LDFLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -Iincludes -Ilibft -I$(MLX_DIR) -c $< -o $@
 
 $(MLX):
 	@make -C $(MLX_DIR)
@@ -56,7 +54,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-relinux: fclean linux
 
 .PHONY: all linux clean fclean re relinux
