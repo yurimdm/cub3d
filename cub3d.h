@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurimdm <yurimdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:08:58 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/12 08:37:48 by yurimdm          ###   ########.fr       */
+/*   Updated: 2026/06/15 15:26:09 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,59 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
+# include "mlx.h"
+# include "libft/libft.h"
+
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
+# define WINDOW_TITLE "Cub3D"
+# define ASSET_SIZE 32
+
+# ifdef __linux__
+#  define MY_OS 'L'
+#  define KEY_W 119
+#  define KEY_A 97
+#  define KEY_S 115
+#  define KEY_D 100
+#  define KEY_ESC 65307
+
+static inline void	destroy_display(void *mlx)
+{
+	mlx_destroy_display(mlx);
+}
+
+# else
+#  define MY_OS 'M'
+#  define KEY_W 13
+#  define KEY_A 0
+#  define KEY_S 1
+#  define KEY_D 2
+#  define KEY_ESC 53
+
+static inline void	destroy_display(void *mlx)
+{
+	(void)mlx;
+}
+
+# endif
+
+typedef struct s_map	t_map;
 
 typedef enum e_bool
 {
 	false,
 	true
 }	t_bool;
+
+typedef struct s_keys
+{
+	t_bool	forward;
+	t_bool	backward;
+	t_bool	left;
+	t_bool	right;
+	t_bool	rotate_left;
+	t_bool	rotate_right;
+}	t_keys;
 
 typedef struct s_player
 {
@@ -35,7 +82,7 @@ typedef struct s_player
 	struct s_player	(*init_player)(int x, int y, float angle);
 	void			(*destroy_player)(struct s_player *player);
 
-	int				(*set_pos)(struct s_player *, int, int);
+	t_bool			(*set_pos)(struct s_player *, int x, int y);
 	t_bool			(*move_x)(struct s_player *, t_map *, float distance);
 	t_bool			(*move_y)(struct s_player *, t_map *, float distance);
 	t_bool			(*move_player)\
@@ -46,7 +93,7 @@ typedef struct s_player
 }			t_player;
 
 t_player	init_player(int x, int y, float angle);
-int			set_pos(t_player *player, int x, int y);
+t_bool		set_pos(t_player *player, int x, int y);
 t_bool		move_x(t_player *player, t_map *map, float distance);
 t_bool		move_y(t_player *player, t_map *map, float distance);
 t_bool		move_player(t_player *player, t_map *map, float x_dis, float y_dis);
@@ -62,6 +109,9 @@ typedef struct s_map
 	int		width;
 	int		height;
 	char	**grid;
+	int		spawn_x;
+	int		spawn_y;
+	char	spawn_dir;
 	t_bool	(*file_to_grid)(struct s_map * m);
 	t_bool	(*is_wall)(struct s_map * m, float x, float y);
 	t_bool	(*load_map)(struct s_map * m, const char *fp);
@@ -70,6 +120,9 @@ typedef struct s_map
 t_bool		file_to_grid(t_map *map);
 t_bool		is_wall(t_map *map, float x, float y);
 t_bool		load_map(t_map *map, const char *file_path);
+void		map_init_spawn(t_map *map);
+void		map_scan_spawn(t_map *map, int h);
+void		map_set_default_spawn(t_map *map);
 
 typedef struct s_ray
 {

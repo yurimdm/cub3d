@@ -3,17 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   angles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurimdm <yurimdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:57:02 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/10 16:49:33 by yurimdm          ###   ########.fr       */
+/*   Updated: 2026/06/15 11:26:37 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-float		set_angle(t_player *player, float angle);
+/* Normalize angle to [0, 2*PI) */
+static float	normalize_angle(float angle)
+{
+	const float	two_pi = 2.0f * M_PI;
 
-float		change_angle(t_player *player, float angle_change);
+	while (angle < 0.0f)
+		angle += two_pi;
+	while (angle >= two_pi)
+		angle -= two_pi;
+	return (angle);
+}
 
-void		debug_log(t_player *player);
+float	set_angle(t_player *player, float angle)
+{
+	if (!player)
+		return (0.0f);
+	player->angle = normalize_angle(angle);
+	return (player->angle);
+}
+
+float	change_angle(t_player *player, float angle_change)
+{
+	if (!player)
+		return (0.0f);
+	player->angle = normalize_angle(player->angle + angle_change);
+	return (player->angle);
+}
+
+void	debug_log(t_player *player)
+{
+	if (!player)
+		return ;
+	printf("Player pos: (%.2f, %.2f) angle: %.2f\n",
+		player->xpos, player->ypos, player->angle);
+}

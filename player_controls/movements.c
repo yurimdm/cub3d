@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yurimdm <yurimdm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:57:04 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/12 08:43:01 by yurimdm          ###   ########.fr       */
+/*   Updated: 2026/06/15 11:57:27 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ t_player	init_player(int x, int y, float angle)
 	return (player);
 }
 
-int	set_pos(t_player *player, int x, int y)
+t_bool	set_pos(t_player *player, int x, int y)
 {
 	player->xpos = (float)x;
 	player->ypos = (float)y;
-	return (0);
+	return (true);
 }
 
 t_bool	move_x(t_player *player, t_map *map, float distance)
