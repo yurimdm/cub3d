@@ -76,4 +76,4 @@ cub3d/
 
 ### AI usage
 
-AI was used to implement the ray-casting engine, MLX rendering pipeline, player controls, and project documentation, based on the existing parser module and the official cub3D subject requirements.
+AI was used to understand the ray-casting engine, MLX rendering pipeline, player controls, and project documentation, based on the cub3D subject requirements.
