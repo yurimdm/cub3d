@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 12:00:00 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 14:16:42 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/16 18:53:58 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ static int	setup_player(t_game *game)
  */
 int	game_init(int argc, char **argv, t_game *game)
 {
-	if (argc != 2)
-		return (ft_putstr_fd("Error: Usage: ./cub3d <map_file.cub>\n", 2), 0);
+	(void)argc;
+	// if (argc != 2)
+	// 	return (ft_putstr_fd("Error: Usage: ./cub3d <map_file.cub>\n", 2), 0);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_putstr_fd("Error: MLX initialization failed\n", 2), 0);

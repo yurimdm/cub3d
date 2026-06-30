@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:08:58 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 18:03:43 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:26:34 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,7 @@ typedef enum e_bool
 # include "key_handling.h"
 # include "maps.h"
 # include "player.h"
-
-typedef struct s_ray
-{
-	float	ray_angle;
-	float	ray_x;
-	float	ray_y;
-	float	distance;
-}			t_ray;
+# include "raycasting.h"
 
 typedef struct s_assets
 {
@@ -72,7 +65,7 @@ int			render_all(t_game *game);
 int			key_hook(int key_code, t_game *game);
 int			close_game(t_game *game);
 
-void		put_circle_pixel(t_game *game, int cx, int cy, int x, int y, int color);
+void		put_circle_pixel(t_game *game, int cx, int cy, int size, int color);
 int			loop(void);
 int			main(int argc, char **argv);
 

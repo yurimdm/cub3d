@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:09:02 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 12:10:48 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/16 14:07:02 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	loop(void)
-{
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {

@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2d_utils.c                                         :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/15 17:59:10 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/16 18:43:12 by deck             ###   ########.fr       */
+/*   Created: 2026/06/16 19:21:35 by ymazzett          #+#    #+#             */
+/*   Updated: 2026/06/16 19:23:47 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
+# include "cub3d.h"
 
-void	put_circle_pixel(t_game *game, int cx, int cy, int size, int color)
+typedef struct s_ray
 {
-	double	step;
-	double	theta;
-	double radius;
-	int		x;
-	int		y;
+	float	ray_angle;
+	float	ray_x;
+	float	ray_y;
+	float	distance;
+}			t_ray;
 
-	radius = size;
-	step = 1.0 / radius;
-	theta = 0.0;
-	while (theta < 2.0 * M_PI)
-	{
-		x = cx + (int)(radius * cos(theta));
-		y = cy + (int)(radius * sin(theta));
-		mlx_pixel_put(game->mlx, game->win, x, y, color);
-		theta += step;
-	}
-}
+#endif

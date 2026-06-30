@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:00:41 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 16:11:43 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/16 17:27:16 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ typedef struct s_keys
 	t_bool	right;
 	t_bool	rotate_left;
 	t_bool	rotate_right;
+	void	(*unpress_all_keys)(struct s_keys *keys);
 }	t_keys;
+
+void unpress_all_keys(t_keys *keys);
 
 #endif

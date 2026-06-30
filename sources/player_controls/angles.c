@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   angles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:57:02 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 15:52:36 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:07:12 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ float	change_angle(t_player *player, float angle_change)
 	return (player->angle);
 }
 
-void	debug_log(t_player *player)
+void	player_debug_log(t_player *player)
 {
 	if (!player)
 		return ;
-	printf("Player pos: (%.2f, %.2f) angle: %.2f\n",
-		player->xpos, player->ypos, player->angle);
+	printf("Player pos: (%.2f, %.2f) angle: %.2fπ rad\n",
+		player->xpos, player->ypos, player->angle / M_PI);
 }
+

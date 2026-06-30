@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 15:35:17 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 16:16:30 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/16 17:13:03 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_player
 (struct s_player *, t_map *, float x, float y);
 	float			(*set_angle)(struct s_player *, float);
 	float			(*change_angle)(struct s_player *, float);
-	void			(*debug_log)(struct s_player *);
+	void			(*player_debug_log)(struct s_player *);
 }			t_player;
 
 t_player	init_player(int x, int y, float angle);
@@ -43,7 +43,7 @@ t_bool		move_y(t_player *player, t_map *map, float distance);
 t_bool		move_player(t_player *player, t_map *map, float x_dis, float y_dis);
 float		set_angle(t_player *player, float angle);
 float		change_angle(t_player *player, float angle_change);
-void		debug_log(t_player *player);
+void		player_debug_log(t_player *player);
 void		destroy_player(t_player *player);
 
 #endif

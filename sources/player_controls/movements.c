@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:57:04 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 15:52:35 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/06/16 19:19:36 by deck             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ t_player	init_player(int x, int y, float angle)
 	player.xpos = (float)x;
 	player.ypos = (float)y;
 	player.angle = angle;
-	player.move_speed = 0.1f;
-	player.angle_speed = 5.0f;
+	player.move_speed = 0.3f;
+	player.angle_speed = 1.0f * M_PI;
 	player.set_pos = set_pos;
 	player.move_x = move_x;
 	player.move_y = move_y;
 	player.move_player = move_player;
 	player.set_angle = set_angle;
 	player.change_angle = change_angle;
-	player.debug_log = debug_log;
+	player.player_debug_log = player_debug_log;
 	return (player);
 }
 
