@@ -6,7 +6,7 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:08:58 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/30 20:00:00 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/07/02 16:57:00 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define WIN_H 540
 # define TEX_SIZE 64
 
+# define MOVE_SPEED 0.01
+# define ROT_SPEED 0.005
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115

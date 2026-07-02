@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:08:58 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/16 19:26:34 by deck             ###   ########.fr       */
+/*   Updated: 2026/07/02 16:55:53 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "mlx.h"
 # include "libft.h"
 
+# define MOVE_SPEED 0.01
+# define ROT_SPEED 0.005
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define WINDOW_TITLE "Cub3D"

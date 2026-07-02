@@ -51,7 +51,7 @@ void	init_player(t_game *game)
 	p = &game->player;
 	p->pos_x = game->map.player_x + 0.5;
 	p->pos_y = game->map.player_y + 0.5;
-	p->move_speed = 0.05;
-	p->rot_speed = 0.03;
+	p->move_speed = MOVE_SPEED;
+	p->rot_speed = ROT_SPEED;
 	set_direction(p, game->map.player_dir);
 }
