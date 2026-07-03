@@ -12,35 +12,39 @@
 
 #include "cub3d.h"
 
+static void	set_a_dir(t_player *p, char dir_x, char dir_y)
+{
+	p->dir_x = dir_x;
+	p->dir_y = dir_y;
+}
+
+static void	set_a_plane(t_player *p, double plane_x, double plane_y)
+{
+	p->plane_x = plane_x;
+	p->plane_y = plane_y;
+}
+
 static void	set_direction(t_player *p, char dir)
 {
 	if (dir == 'N')
 	{
-		p->dir_x = 0;
-		p->dir_y = -1;
-		p->plane_x = 0.66;
-		p->plane_y = 0;
+		set_a_dir(p, 0, -1);
+		set_a_plane(p, 0.66, 0);
 	}
 	else if (dir == 'S')
 	{
-		p->dir_x = 0;
-		p->dir_y = 1;
-		p->plane_x = -0.66;
-		p->plane_y = 0;
+		set_a_dir(p, 0, 1);
+		set_a_plane(p, -0.66, 0);
 	}
 	else if (dir == 'E')
 	{
-		p->dir_x = 1;
-		p->dir_y = 0;
-		p->plane_x = 0;
-		p->plane_y = 0.66;
+		set_a_dir(p, 1, 0);
+		set_a_plane(p, 0, 0.66);
 	}
 	else if (dir == 'W')
 	{
-		p->dir_x = -1;
-		p->dir_y = 0;
-		p->plane_x = 0;
-		p->plane_y = -0.66;
+		set_a_dir(p, -1, 0);
+		set_a_plane(p, 0, -0.66);
 	}
 }
 

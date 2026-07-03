@@ -55,10 +55,7 @@ void	free_game(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
-# ifndef __APPLE__
-		mlx_destroy_display(game->mlx);
-# endif
-		free(game->mlx);
+		destroy_display(game->mlx);
 	}
 	free_map(&game->map);
 }

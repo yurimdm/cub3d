@@ -6,7 +6,7 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:08:58 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/07/03 17:26:50 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/07/03 18:13:23 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-/* Define t_bool before including module headers */
-typedef enum e_bool
-{
-	false,
-	true
-}	t_bool;
+/* Include OOP-style modules */
+# include "key_handling.h"
+# include "maps.h"
+# include "player.h"
+# include "raycasting.h"
 
 /* Image structures */
 typedef struct s_img
@@ -67,12 +66,6 @@ typedef struct s_tex
 	int		line_len;
 	int		endian;
 }	t_tex;
-
-/* Include OOP-style modules */
-# include "key_handling.h"
-# include "maps.h"
-# include "player.h"
-# include "raycasting.h"
 
 /* Main game structure */
 typedef struct s_game

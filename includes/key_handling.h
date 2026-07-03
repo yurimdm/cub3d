@@ -6,7 +6,7 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:00:41 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/07/03 17:26:38 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/07/03 18:13:14 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ static inline void	destroy_display(void *mlx)
 
 # endif
 
+/* Define t_bool before including module headers */
+typedef enum e_bool
+{
+	false,
+	true
+}	t_bool;
+
 typedef struct s_keys
 {
 	t_bool	forward;
@@ -60,6 +67,6 @@ typedef struct s_keys
 	void	(*unpress_all_keys)(struct s_keys *keys);
 }	t_keys;
 
-void unpress_all_keys(t_keys *keys);
+void	unpress_all_keys(t_keys *keys);
 
 #endif

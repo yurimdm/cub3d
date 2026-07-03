@@ -6,12 +6,14 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:21:35 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/07/03 17:26:39 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/07/03 18:46:33 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
+
+typedef struct s_game	t_game;
 
 typedef struct s_ray
 {
@@ -35,5 +37,11 @@ typedef struct s_ray
 	int		tex_num;
 	double	wall_x;
 }	t_ray;
+
+void	compute_wall_dist(t_ray *ray, t_player *p);
+void	set_tex_info(t_ray *ray, t_player *p);
+void	draw_column(t_game *game, t_ray *ray, int x);
+void	cast_single_ray(t_game *game, int x);
+void	raycast(t_game *game);
 
 #endif

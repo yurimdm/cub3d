@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -std=gnu99
+CFLAGS = -Wall -Wextra -Werror -g 
 
 UNAME_S := $(shell uname -s)
 
@@ -16,7 +16,7 @@ endif
 
 SRCS = sources/main.c \
 	sources/player_controls/player_init.c sources/player_controls/movements.c sources/player_controls/angles.c \
-	sources/raycast/raycast.c sources/raycast/ray_dda.c \
+	sources/raycast/raycast.c sources/raycast/raycast_utils.c sources/raycast/ray_dda.c \
 	sources/render/render.c \
 	sources/mlx_utils/init_mlx.c sources/mlx_utils/textures.c sources/mlx_utils/hooks.c sources/mlx_utils/cleanup.c \
 	sources/utils/color.c \
