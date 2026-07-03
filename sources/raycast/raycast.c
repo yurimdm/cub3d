@@ -12,8 +12,6 @@
 
 #include "cub3d.h"
 
-void	raycast(t_game *game);
-
 void	compute_wall_dist(t_ray *ray, t_player *p)
 {
 	if (ray->side == 0)
