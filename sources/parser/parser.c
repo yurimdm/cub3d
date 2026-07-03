@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "../libft/libft.h"
+#include "cub3d.h"
 #include <fcntl.h>
 
 void	error_exit(const char *msg)

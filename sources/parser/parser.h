@@ -13,7 +13,7 @@
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "../cub3d.h"
+# include "cub3d.h"
 
 void	error_exit(const char *msg);
 void	free_lines(char **lines);

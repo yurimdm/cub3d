@@ -3,48 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   angles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:57:02 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/16 19:07:12 by deck             ###   ########.fr       */
+/*   Updated: 2026/07/03 17:26:43 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Normalize angle to [0, 2*PI) */
-static float	normalize_angle(float angle)
+static void	rotate_player(t_game *game, double rot)
 {
-	const float	two_pi = 2.0f * M_PI;
+	double	old_dir_x;
+	double	old_plane_x;
+	double	cos_r;
+	double	sin_r;
 
-	while (angle < 0.0f)
-		angle += two_pi;
-	while (angle >= two_pi)
-		angle -= two_pi;
-	return (angle);
+	cos_r = cos(rot);
+	sin_r = sin(rot);
+	old_dir_x = game->player.dir_x;
+	game->player.dir_x = game->player.dir_x * cos_r
+		- game->player.dir_y * sin_r;
+	game->player.dir_y = old_dir_x * sin_r
+		+ game->player.dir_y * cos_r;
+	old_plane_x = game->player.plane_x;
+	game->player.plane_x = game->player.plane_x * cos_r
+		- game->player.plane_y * sin_r;
+	game->player.plane_y = old_plane_x * sin_r
+		+ game->player.plane_y * cos_r;
 }
 
-float	set_angle(t_player *player, float angle)
+void	handle_rotation(t_game *game)
 {
-	if (!player)
-		return (0.0f);
-	player->angle = normalize_angle(angle);
-	return (player->angle);
+	if (game->keys[KEY_LEFT])
+		rotate_player(game, -game->player.rot_speed);
+	if (game->keys[KEY_RIGHT])
+		rotate_player(game, game->player.rot_speed);
 }
-
-float	change_angle(t_player *player, float angle_change)
-{
-	if (!player)
-		return (0.0f);
-	player->angle = normalize_angle(player->angle + angle_change);
-	return (player->angle);
-}
-
-void	player_debug_log(t_player *player)
-{
-	if (!player)
-		return ;
-	printf("Player pos: (%.2f, %.2f) angle: %.2fπ rad\n",
-		player->xpos, player->ypos, player->angle / M_PI);
-}
-

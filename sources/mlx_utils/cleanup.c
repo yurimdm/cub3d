@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 #include "../libft/libft.h"
 
 static void	free_map(t_map *map)

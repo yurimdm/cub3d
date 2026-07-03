@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 #include "../parser/parser.h"
 
 static void	load_single_tex(t_game *game, t_tex *tex, char *path)

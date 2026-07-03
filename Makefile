@@ -14,22 +14,22 @@ else
 MLX_LDFLAGS = -L./mlx -lmlx -lX11 -lXext -lm -lbsd
 endif
 
-SRCS = main.c \
-	player_controls/player_init.c player_controls/movements.c player_controls/angles.c \
-	raycast/raycast.c raycast/ray_dda.c \
-	render/render.c \
-	mlx_utils/init_mlx.c mlx_utils/textures.c mlx_utils/hooks.c mlx_utils/cleanup.c \
-	utils/color.c \
-	parser/parser.c parser/parser_utils.c parser/parser_elements.c \
-	parser/parser_attrs.c parser/parser_map.c parser/parser_validate.c \
-	libft/gnl/get_next_line.c libft/gnl/get_next_line_utils.c \
-	libft/ft_atoi.c libft/ft_bzero.c libft/ft_isalnum.c libft/ft_isalpha.c libft/ft_tolower.c \
-	libft/ft_isascii.c libft/ft_isdigit.c libft/ft_isprint.c libft/ft_memchr.c libft/ft_memcpy.c \
-	libft/ft_memcmp.c libft/ft_memset.c libft/ft_strlcat.c libft/ft_toupper.c \
-	libft/ft_strlcpy.c libft/ft_strlen.c libft/ft_strncmp.c libft/ft_calloc.c libft/ft_strrchr.c \
-	libft/ft_memmove.c libft/ft_strdup.c libft/ft_strnstr.c libft/ft_strjoin.c libft/ft_putchar_fd.c \
-	libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c libft/ft_strmapi.c \
-	libft/ft_strtrim.c libft/ft_substr.c libft/ft_split.c libft/ft_itoa.c libft/ft_striteri.c
+SRCS = sources/main.c \
+	sources/player_controls/player_init.c sources/player_controls/movements.c sources/player_controls/angles.c \
+	sources/raycast/raycast.c sources/raycast/ray_dda.c \
+	sources/render/render.c \
+	sources/mlx_utils/init_mlx.c sources/mlx_utils/textures.c sources/mlx_utils/hooks.c sources/mlx_utils/cleanup.c \
+	sources/utils/color.c \
+	sources/parser/parser.c sources/parser/parser_utils.c sources/parser/parser_elements.c \
+	sources/parser/parser_attrs.c sources/parser/parser_map.c sources/parser/parser_validate.c \
+	sources/libft/gnl/get_next_line.c sources/libft/gnl/get_next_line_utils.c \
+	sources/libft/ft_atoi.c sources/libft/ft_bzero.c sources/libft/ft_isalnum.c sources/libft/ft_isalpha.c sources/libft/ft_tolower.c \
+	sources/libft/ft_isascii.c sources/libft/ft_isdigit.c sources/libft/ft_isprint.c sources/libft/ft_memchr.c sources/libft/ft_memcpy.c \
+	sources/libft/ft_memcmp.c sources/libft/ft_memset.c sources/libft/ft_strlcat.c sources/libft/ft_toupper.c \
+	sources/libft/ft_strlcpy.c sources/libft/ft_strlen.c sources/libft/ft_strncmp.c sources/libft/ft_calloc.c sources/libft/ft_strrchr.c \
+	sources/libft/ft_memmove.c sources/libft/ft_strdup.c sources/libft/ft_strnstr.c sources/libft/ft_strjoin.c sources/libft/ft_putchar_fd.c \
+	sources/libft/ft_putstr_fd.c sources/libft/ft_putendl_fd.c sources/libft/ft_putnbr_fd.c sources/libft/ft_strmapi.c \
+	sources/libft/ft_strtrim.c sources/libft/ft_substr.c sources/libft/ft_split.c sources/libft/ft_itoa.c sources/libft/ft_striteri.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
@@ -42,21 +42,22 @@ $(NAME): $(MLX) $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) $(MLX) $(MLX_LDFLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -I$(MLX_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I./includes -I./sources/parser -I./sources/libft -I$(MLX_DIR) -c $< -o $@
 
 $(MLX):
 	@make -C $(MLX_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $@
-	mkdir -p $@/libft
-	mkdir -p $@/libft/gnl
-	mkdir -p $@/player_controls
-	mkdir -p $@/parser
-	mkdir -p $@/raycast
-	mkdir -p $@/render
-	mkdir -p $@/mlx_utils
-	mkdir -p $@/utils
+	mkdir -p $@/sources
+	mkdir -p $@/sources/libft
+	mkdir -p $@/sources/libft/gnl
+	mkdir -p $@/sources/player_controls
+	mkdir -p $@/sources/parser
+	mkdir -p $@/sources/raycast
+	mkdir -p $@/sources/render
+	mkdir -p $@/sources/mlx_utils
+	mkdir -p $@/sources/utils
 
 clean:
 	rm -rf $(OBJ_DIR)

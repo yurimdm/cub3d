@@ -6,12 +6,13 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:08:58 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/07/02 16:55:53 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:26:50 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -20,32 +21,60 @@
 # include "mlx.h"
 # include "libft.h"
 
+# define WIN_W 960
+# define WIN_H 540
+# define TEX_SIZE 64
+
 # define MOVE_SPEED 0.01
 # define ROT_SPEED 0.005
+# define KEY_MAX 65536
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define WINDOW_TITLE "Cub3D"
 # define ASSET_SIZE 32
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_ESC 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
+/* Define t_bool before including module headers */
 typedef enum e_bool
 {
 	false,
 	true
 }	t_bool;
 
+/* Image structures */
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_tex
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_tex;
+
+/* Include OOP-style modules */
 # include "key_handling.h"
 # include "maps.h"
 # include "player.h"
 # include "raycasting.h"
 
-typedef struct s_assets
-{
-	void	*north_wall;
-	void	*south_wall;
-	void	*west_wall;
-	void	*east_wall;
-}			t_assets;
-
+/* Main game structure */
 typedef struct s_game
 {
 	t_player	player;
@@ -53,22 +82,41 @@ typedef struct s_game
 	t_ray		ray;
 	void		*mlx;
 	void		*win;
-	t_assets	assets;
-	t_keys		keys;
+	t_img		frame;
+	t_tex		tex[4];
+	int			keys[KEY_MAX];
+	int			running;
+}	t_game;
 
-	int			(*game_init)(int argc, char **argv, struct s_game *game);
-	int			(*render_all)(struct s_game *game);
-	int			(*key_hook)(int key_code, struct s_game *game);
-	int			(*close_game)(struct s_game *game);
-}				t_game;
+/* Game initialization and management */
+int		parse_scene(t_game *game, const char *path);
+void	init_player(t_game *game);
+void	update_player(t_game *game);
+int		init_mlx(t_game *game);
+int		load_textures(t_game *game);
+void	render_frame(t_game *game);
+int		key_press(int keycode, void *param);
+int		key_release(int keycode, void *param);
+int		close_game(void *param);
+void	free_game(t_game *game);
 
-int			game_init(int argc, char **argv, t_game *game);
-int			render_all(t_game *game);
-int			key_hook(int key_code, t_game *game);
-int			close_game(t_game *game);
+/* Graphics utilities */
+int		rgb_to_int(int r, int g, int b);
+void	put_pixel(t_img *img, int x, int y, int color);
+int		get_tex_color(t_tex *tex, int x, int y);
 
-void		put_circle_pixel(t_game *game, int cx, int cy, int size, int color);
-int			loop(void);
-int			main(int argc, char **argv);
+/* Map utilities */
+int		is_wall(t_map *map, double x, double y);
+
+/* Raycasting */
+void	handle_rotation(t_game *game);
+void	raycast(t_game *game);
+void	prepare_ray(t_ray *ray, t_player *p, int x);
+void	run_dda(t_ray *ray, t_map *map);
+
+/* Hooks and main */
+void	setup_hooks(t_game *game);
+int		game_loop(void *param);
+int		main(int argc, char **argv);
 
 #endif

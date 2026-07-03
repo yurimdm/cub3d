@@ -6,34 +6,30 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 15:39:39 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/15 16:16:32 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/07/03 16:48:39 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAPS_H
 # define MAPS_H
-# include "cub3d.h"
 
 typedef struct s_map
 {
-	int		fd;
-	char	*file_path;
 	int		width;
 	int		height;
 	char	**grid;
-	int		spawn_x;
-	int		spawn_y;
-	char	spawn_dir;
-	t_bool	(*file_to_grid)(struct s_map * m);
-	t_bool	(*is_wall)(struct s_map * m, float x, float y);
-	t_bool	(*load_map)(struct s_map * m, const char *fp);
-}			t_map;
-
-t_bool		file_to_grid(t_map *map);
-t_bool		is_wall(t_map *map, float x, float y);
-t_bool		load_map(t_map *map, const char *file_path);
-void		map_init_spawn(t_map *map);
-void		map_scan_spawn(t_map *map, int h);
-void		map_set_default_spawn(t_map *map);
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
+	int		floor_color[3];
+	int		ceiling_color[3];
+	int		floor_set;
+	int		ceiling_set;
+	int		player_count;
+	char	player_dir;
+	int		player_x;
+	int		player_y;
+}	t_map;
 
 #endif

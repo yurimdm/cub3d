@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-#include "../parser/parser.h"
+#include "cub3d.h"
+#include "parser.h"
 
 static void	setup_img(t_img *img, void *mlx, int w, int h)
 {

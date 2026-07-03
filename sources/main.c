@@ -3,24 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:09:02 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/16 14:07:02 by deck             ###   ########.fr       */
+/*   Updated: 2026/07/03 16:48:36 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
+
+void	setup_hooks(t_game *game);
+
+static void	check_args(int argc)
+{
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putendl_fd("Usage: ./cub3D <map.cub>", 2);
+		exit(EXIT_FAILURE);
+	}
+}
 
 int	main(int argc, char **argv)
 {
-	static t_game	game;
+	t_game	game;
 
-	if (!game_init(argc, argv, &game))
-		return (1);
-	mlx_hook(game.win, 17, 0, close_game, &game);
-	mlx_hook(game.win, 2, 1L << 0, key_hook, &game);
-	mlx_loop_hook(game.mlx, render_all, &game);
+	check_args(argc);
+	ft_bzero(&game, sizeof(t_game));
+	parse_scene(&game, argv[1]);
+	init_mlx(&game);
+	load_textures(&game);
+	init_player(&game);
+	setup_hooks(&game);
 	mlx_loop(game.mlx);
-	return (0);
+	free_game(&game);
+	return (EXIT_SUCCESS);
 }

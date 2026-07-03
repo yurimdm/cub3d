@@ -3,79 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 18:57:04 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/16 19:19:36 by deck             ###   ########.fr       */
+/*   Created: 2026/07/02 17:12:15 by ymazzett          #+#    #+#             */
+/*   Updated: 2026/07/03 16:48:39 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_player	init_player(int x, int y, float angle)
+int	is_wall(t_map *map, double x, double y)
 {
-	t_player	player;
+	int	mx;
+	int	my;
 
-	player.xpos = (float)x;
-	player.ypos = (float)y;
-	player.angle = angle;
-	player.move_speed = 0.3f;
-	player.angle_speed = 1.0f * M_PI;
-	player.set_pos = set_pos;
-	player.move_x = move_x;
-	player.move_y = move_y;
-	player.move_player = move_player;
-	player.set_angle = set_angle;
-	player.change_angle = change_angle;
-	player.player_debug_log = player_debug_log;
-	return (player);
+	mx = (int)x;
+	my = (int)y;
+	if (mx < 0 || my < 0 || mx >= map->width || my >= map->height)
+		return (1);
+	if (map->grid[my][mx] == '1' || map->grid[my][mx] == ' ')
+		return (1);
+	return (0);
 }
 
-t_bool	set_pos(t_player *player, int x, int y)
+static void	try_move(t_game *game, double nx, double ny)
 {
-	player->xpos = (float)x;
-	player->ypos = (float)y;
-	return (true);
+	if (!is_wall(&game->map, nx, game->player.pos_y))
+		game->player.pos_x = nx;
+	if (!is_wall(&game->map, game->player.pos_x, ny))
+		game->player.pos_y = ny;
 }
 
-t_bool	move_x(t_player *player, t_map *map, float distance)
+static void	move_forward(t_game *game, int dir)
 {
-	float	new_x;
-	float	new_y;
+	double	speed;
+	double	nx;
+	double	ny;
 
-	new_x = player->xpos + cosf(player->angle) * distance;
-	new_y = player->ypos + sinf(player->angle) * distance;
-	if (is_wall(map, new_x, new_y))
-		return (false);
-	player->xpos = new_x;
-	player->ypos = new_y;
-	return (true);
+	speed = game->player.move_speed * dir;
+	nx = game->player.pos_x + game->player.dir_x * speed;
+	ny = game->player.pos_y + game->player.dir_y * speed;
+	try_move(game, nx, ny);
 }
 
-t_bool	move_y(t_player *player, t_map *map, float distance)
+static void	strafe(t_game *game, int dir)
 {
-	float	new_x;
-	float	new_y;
+	double	speed;
+	double	nx;
+	double	ny;
 
-	new_x = player->xpos - sinf(player->angle) * distance;
-	new_y = player->ypos + cosf(player->angle) * distance;
-	if (is_wall(map, new_x, new_y))
-		return (false);
-	player->xpos = new_x;
-	player->ypos = new_y;
-	return (true);
+	speed = game->player.move_speed * dir;
+	nx = game->player.pos_x + game->player.plane_x * speed;
+	ny = game->player.pos_y + game->player.plane_y * speed;
+	try_move(game, nx, ny);
 }
 
-t_bool	move_player(t_player *player, t_map *map, float x_dis, float y_dis)
+void	update_player(t_game *game)
 {
-	float	new_x;
-	float	new_y;
-
-	new_x = player->xpos + x_dis;
-	new_y = player->ypos + y_dis;
-	if (is_wall(map, new_x, new_y))
-		return (false);
-	player->xpos = new_x;
-	player->ypos = new_y;
-	return (true);
+	if (game->keys[KEY_W])
+		move_forward(game, 1);
+	if (game->keys[KEY_S])
+		move_forward(game, -1);
+	if (game->keys[KEY_A])
+		strafe(game, -1);
+	if (game->keys[KEY_D])
+		strafe(game, 1);
 }

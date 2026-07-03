@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   key_handling.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deck <deck@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:00:41 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/06/16 17:27:16 by deck             ###   ########.fr       */
+/*   Updated: 2026/07/03 17:26:38 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_HANDLING_H
 # define KEY_HANDLING_H
-# include "cub3d.h"
 
 # ifdef __linux__
 #  define MY_OS 'L'
