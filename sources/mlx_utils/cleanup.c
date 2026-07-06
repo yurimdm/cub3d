@@ -56,6 +56,8 @@ void	free_game(t_game *game)
 	if (game->mlx)
 	{
 		destroy_display(game->mlx);
+		free(game->mlx);
+		game->mlx = NULL;
 	}
 	free_map(&game->map);
 }
