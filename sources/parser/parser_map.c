@@ -84,7 +84,7 @@ void	extract_map(t_map *map, char **lines, int start)
 	map->width = get_max_width(lines, start, map->height);
 	if (map->width < 3 || map->height < 3)
 		error_exit("Map too small to be enclosed");
-	map->grid = malloc(sizeof(char *) * (map->height + 1));
+	map->grid = ft_calloc((size_t)(map->height + 1), sizeof(char *));
 	if (!map->grid)
 		error_exit("Memory error");
 	i = 0;

@@ -14,13 +14,6 @@
 #include "cub3d.h"
 #include <fcntl.h>
 
-void	error_exit(const char *msg)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putendl_fd((char *)msg, 2);
-	exit(EXIT_FAILURE);
-}
-
 void	free_lines(char **lines)
 {
 	int	i;
@@ -69,14 +62,11 @@ static char	**read_all_lines(int fd)
 	return (lines);
 }
 
-int	parse_scene(t_game *game, const char *path)
+static char	**read_scene_lines(const char *path)
 {
 	char	**lines;
 	int		fd;
-	int		map_start;
-	int		i;
 
-	init_map_defaults(&game->map);
 	if (!has_cub_extension(path))
 		error_exit("File must have .cub extension");
 	fd = open(path, O_RDONLY);
@@ -86,6 +76,20 @@ int	parse_scene(t_game *game, const char *path)
 	close(fd);
 	if (!lines)
 		error_exit("Failed to read scene file");
+	return (lines);
+}
+
+int	parse_scene(t_game *game, const char *path)
+{
+	char	**lines;
+	int		map_start;
+	int		i;
+
+	lines = NULL;
+	init_map_defaults(&game->map);
+	set_ctx_game(game);
+	set_ctx_lines(&lines);
+	lines = read_scene_lines(path);
 	i = -1;
 	while (lines[++i])
 		strip_newline(lines[i]);
@@ -93,5 +97,6 @@ int	parse_scene(t_game *game, const char *path)
 	extract_map(&game->map, lines, map_start);
 	validate_map(&game->map);
 	free_lines(lines);
+	set_ctx_lines(NULL);
 	return (0);
 }

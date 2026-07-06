@@ -15,6 +15,14 @@
 
 # include "cub3d.h"
 
+typedef struct s_parse_ctx
+{
+	t_game	*game;
+	char	***lines;
+}	t_parse_ctx;
+
+void	set_ctx_game(t_game *game);
+void	set_ctx_lines(char ***lines);
 void	error_exit(const char *msg);
 void	free_lines(char **lines);
 char	**append_line(char **lines, char *line, int *count);

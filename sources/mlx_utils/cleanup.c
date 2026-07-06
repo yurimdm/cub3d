@@ -17,20 +17,25 @@ static void	free_map(t_map *map)
 {
 	int	i;
 
-	if (!map->grid)
-		return ;
-	i = 0;
-	while (map->grid[i])
+	if (map->grid)
 	{
-		free(map->grid[i]);
-		i++;
+		i = 0;
+		while (map->grid[i])
+		{
+			free(map->grid[i]);
+			i++;
+		}
+		free(map->grid);
+		map->grid = NULL;
 	}
-	free(map->grid);
-	map->grid = NULL;
 	free(map->no_texture);
 	free(map->so_texture);
 	free(map->we_texture);
 	free(map->ea_texture);
+	map->no_texture = NULL;
+	map->so_texture = NULL;
+	map->we_texture = NULL;
+	map->ea_texture = NULL;
 }
 
 static void	destroy_textures(t_game *game)
