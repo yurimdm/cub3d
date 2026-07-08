@@ -11,9 +11,7 @@ The Makefile auto-detects the OS. From the project root:
 | Target | What it does |
 |--------|--------------|
 | `make` | Build `cub3D` (auto OS detect) |
-| `make linux` | Explicit Linux build (forces X11/Xext link flags) |
 | `make re` | `fclean` + rebuild |
-| `make relinux` | `fclean` + `make linux` |
 | `make clean` | Remove object files in `obj/` |
 | `make fclean` | `clean` + remove the `cub3D` binary |
 

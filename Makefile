@@ -35,9 +35,6 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-linux: $(MLX) $(OBJ_DIR) $(OBJS)
-	$(CC) $(OBJS) $(MLX) -L./mlx -lmlx -lX11 -lXext -lm -lbsd -o $(NAME)
-
 $(NAME): $(MLX) $(OBJ_DIR) $(OBJS)
 	$(CC) $(OBJS) $(MLX) $(MLX_LDFLAGS) -o $(NAME)
 
@@ -66,7 +63,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-relinux: fclean linux
 
 .PHONY: all linux clean fclean re relinux
