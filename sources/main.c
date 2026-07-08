@@ -6,7 +6,7 @@
 /*   By: ymazzett <ymazzett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/09 16:09:02 by ymazzett          #+#    #+#             */
-/*   Updated: 2026/07/03 16:48:36 by ymazzett         ###   ########.fr       */
+/*   Updated: 2026/07/08 15:27:07 by ymazzett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 
 	check_args(argc);
 	ft_bzero(&game, sizeof(t_game));
+	set_ctx_game(&game);
 	parse_scene(&game, argv[1]);
 	init_mlx(&game);
 	load_textures(&game);

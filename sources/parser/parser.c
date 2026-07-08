@@ -87,7 +87,6 @@ int	parse_scene(t_game *game, const char *path)
 
 	lines = NULL;
 	init_map_defaults(&game->map);
-	set_ctx_game(game);
 	set_ctx_lines(&lines);
 	lines = read_scene_lines(path);
 	i = -1;

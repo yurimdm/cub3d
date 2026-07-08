@@ -20,7 +20,7 @@ SRCS = sources/main.c \
 	sources/render/render.c \
 	sources/mlx_utils/init_mlx.c sources/mlx_utils/textures.c sources/mlx_utils/hooks.c sources/mlx_utils/cleanup.c \
 	sources/utils/color.c \
-	sources/parser/parser.c sources/parser/parser_utils.c sources/parser/parser_elements.c \
+	sources/parser/parser.c sources/parser/parser_error.c sources/parser/parser_utils.c sources/parser/parser_elements.c \
 	sources/parser/parser_attrs.c sources/parser/parser_map.c sources/parser/parser_validate.c \
 	sources/libft/gnl/get_next_line.c sources/libft/gnl/get_next_line_utils.c \
 	sources/libft/ft_atoi.c sources/libft/ft_bzero.c sources/libft/ft_isalnum.c sources/libft/ft_isalpha.c sources/libft/ft_tolower.c \
