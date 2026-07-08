@@ -28,6 +28,7 @@
 static inline void	destroy_display(void *mlx)
 {
 	mlx_destroy_display(mlx);
+	free(mlx);
 }
 
 # else
