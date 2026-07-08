@@ -66,8 +66,8 @@ void	draw_column(t_game *game, t_ray *ray, int x)
 	double	tex_pos;
 
 	tex_x = (int)(ray->wall_x * (double)TEX_SIZE);
-	if ((ray->side == 0 && ray->dir_x > 0)
-		|| (ray->side == 1 && ray->dir_y < 0))
+	if ((ray->side == 0 && ray->dir_x < 0)
+		|| (ray->side == 1 && ray->dir_y > 0))
 		tex_x = TEX_SIZE - tex_x - 1;
 	step = 1.0 * TEX_SIZE / ray->line_height;
 	tex_pos = (ray->draw_start - WIN_H / 2 + ray->line_height / 2) * step;
