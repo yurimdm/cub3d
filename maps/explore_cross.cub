@@ -1,7 +1,7 @@
-NO textures/wall_n.xpm
-SO textures/wall_s.xpm
-WE textures/wall_w.xpm
-EA textures/wall_e.xpm
+NO textures/ball-n.xpm
+SO textures/ball-s.xpm
+WE textures/ball-w.xpm
+EA textures/ball-e.xpm
 F 100,140,80
 C 180,200,255
 
