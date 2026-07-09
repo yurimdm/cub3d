@@ -140,9 +140,7 @@ cub3d-main/
 
 ## Resources
 
-- [Cub3D subject](en.subject.pdf)
 - [Ray-casting tutorial (Lodev)](https://lodev.org/cgtutor/raycasting.html)
-- [MiniLibX documentation](https://harm-smits.github.io/42docs/libs/mlx)
 - Wolfenstein 3D: http://users.atw.hu/wolf3d/
 
 ### AI usage
