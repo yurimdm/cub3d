@@ -38,6 +38,7 @@ void	parse_color(int *rgb, int *set_flag, char *s);
 
 void	extract_map(t_map *map, char **lines, int start);
 void	validate_map(t_map *map);
+void	check_reachability(t_map *map);
 
 char	*get_next_line(int fd);
 
