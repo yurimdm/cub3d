@@ -22,6 +22,7 @@ SRCS = sources/main.c \
 	sources/utils/color.c \
 	sources/parser/parser.c sources/parser/parser_error.c sources/parser/parser_utils.c sources/parser/parser_elements.c \
 	sources/parser/parser_attrs.c sources/parser/parser_map.c sources/parser/parser_validate.c \
+	sources/parser/parser_flood.c \
 	sources/libft/gnl/get_next_line.c sources/libft/gnl/get_next_line_utils.c \
 	sources/libft/ft_atoi.c sources/libft/ft_bzero.c sources/libft/ft_isalnum.c sources/libft/ft_isalpha.c sources/libft/ft_tolower.c \
 	sources/libft/ft_isascii.c sources/libft/ft_isdigit.c sources/libft/ft_isprint.c sources/libft/ft_memchr.c sources/libft/ft_memcpy.c \
