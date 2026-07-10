@@ -113,6 +113,7 @@ cub3d-main/
 │   │   ├── parser_error.c        # error reporting + exit
 │   │   ├── parser_map.c          # 2D grid extraction
 │   │   ├── parser_utils.c        # helpers
+│   │   ├── parser_flood.c        # helpers
 │   │   └── parser_validate.c     # closed-map + spawn validation
 │   ├── player_controls/
 │   │   ├── player_init.c         # spawn position + initial dir/plane
